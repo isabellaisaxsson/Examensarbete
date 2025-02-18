@@ -1,0 +1,39 @@
+.header {
+    background-color: #D4A373;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    right: 0;
+    z-index: 1000; 
+  }
+  
+  .header-logo {
+    color: #FEFAE0;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: serif;
+  }
+  
+  .nav-list {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-link {
+    color: #fefae0;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  
+  .nav-link:hover {
+    opacity: 0.9;
+  }
+  
+  

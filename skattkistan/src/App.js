@@ -1,10 +1,10 @@
-import Header from "./Header";
-import Produkter from "./Produkter";
-import OmOss from "./Om-oss";
-import KontaktaOss from "./Kontakta-oss";
-import Hem from "./Hem";
+import Header from "./pages/Header";
+import Produkter from "./pages/Produkter";
+import OmOss from "./pages/Om-oss";
+import KontaktaOss from "./pages/Kontakta-oss";
+import Hem from "./pages/Hem";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.css';
+import './pages/style/App.css';
 
 function App() {
   return (
