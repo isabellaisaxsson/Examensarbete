@@ -55,9 +55,10 @@
     background-color: #FEFAE0;
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: 60vh;
     display: flex;
     justify-content: center; 
+    padding-bottom: 50px;
 }
 .carousel-section {
     display: flex;
@@ -180,4 +181,40 @@
     background-color: #c49669;
   }
   
-  
+  .section-3 {
+    background-color: #CCD5AE;
+    color: #FEFAE0;
+    padding-top: 100px; 
+    text-align: center; /* Centrerar texten */
+    min-height: 60vh;
+}
+
+.section-3 p{
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.section-4{
+  position: relative;
+  background-color: #FEFAE0;
+  color: #D4A373;
+  background-size: cover;
+  background-position: center;
+  min-height: 60vh;
+  padding-top: 150px;
+  padding: 50px;
+}
+
+.donation-flex{
+  display: flex;
+  flex-direction: row;
+}
+
+.donation-flex p{
+  width: 50%;
+}
+
+.donation-flex img{
+  width: 45%;
+  padding-left: 75px;
+}
