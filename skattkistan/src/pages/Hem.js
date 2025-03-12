@@ -1,15 +1,56 @@
 import "./style/Hem.css"
 import Carousel from "../components/carouselFunction";
 import movingBoxes from "../images/moving-boxes.jpg";
+import CarouselForOneItem from "../components/carouselFunctionOnePiece";
+import { useEffect, useState } from "react"
+import { supabase } from "../superbaseClient"
 
 const Hem = () => {
+
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data, error } = await supabase.from("produkter").select("*")
+
+        if (error) {
+          console.error("Fel vid hämtning av produkter:", error)
+        } else {
+          console.log("Produkter hämtade för carousel:", data)
+          setProducts(data || [])
+        }
+      } catch (err) {
+        console.error("Oväntat fel:", err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
+
     return(
 <div>
     <div className="section-1">
         <div className="background-box">
             <div className="flex-hero">
                 <div className="product-display">
-                    <div className="box"></div>
+                <div className="box">
+                {loading ? (
+                  <p>Loading products...</p>
+                ) : products.length === 0 ? (
+                  <p>No products available</p>
+                ) : (
+                  <>
+                    <p className="product-count" aria-hidden="true">
+                      <span className="visually-hidden">Products available: {products.length}</span>
+                    </p>
+                    <CarouselForOneItem products={products} />
+                  </>
+                )}
+              </div>
                 </div>
                 <div className="title-text">
                     <h1>Skattkistan - Secondhand med hjärta</h1>
@@ -20,8 +61,12 @@ const Hem = () => {
     </div>
 
     <div className="section-2">
-            <Carousel />
-    </div>
+    {!loading && products.length > 0 && (
+        <div className="section-carousel">
+          <Carousel products={products} />
+        </div>
+      )}
+      </div>
 
     <div className="section-3">
         <h1>Våra mål med skattkistan</h1>

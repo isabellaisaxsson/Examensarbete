@@ -1,203 +1,428 @@
-.section-1 {
-    position: relative;
-    background-image: url('../../images/background-home-1.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
+/* Carousel styles */
+.carousel-one-item {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: relative;
 }
 
+.carousel-one-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.carousel-one-item-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Update the carousel image styles */
+.carousel-one-item-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.carousel-one-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Remove the product info styles since we're not using them */
+.carousel-product-info {
+  display: none;
+}
+
+.carousel-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s;
+}
+
+.carousel-arrow-btn:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.carousel-arrow-btn.left {
+  left: 10px;
+}
+
+.carousel-arrow-btn.right {
+  right: 10px;
+}
+
+.carousel-arrow-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Make sure the box in section-1 has appropriate dimensions */
+.section-1 .box {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+/* Add these styles to your Hem.css file */
+
+/* Visually hide the product count but keep it in the DOM */
+.product-count {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Rest of your existing CSS */
+.section-1 {
+  position: relative;
+  background-image: url("../../images/background-home-1.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .background-box {
-    background-color: #CCD5AE;
-    width: 90%;
-    height: 500px;
-    margin-top: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: #ccd5ae;
+  width: 90%;
+  height: 500px;
+  margin-top: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-hero {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    width: 90%; 
-    height: 100%; 
-    margin: auto; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 100%;
+  margin: auto;
 }
 
 .product-display {
-    width: 40%; 
-    display: flex;
-    justify-content: center; 
-    align-items: center;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.box {
-    width: 300px; 
-    height: 300px;
-    background-color: #eee;
+.carousel-one-item {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #d4a373;
+  font-weight: bold;
+}
+
+.carousel-one-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-one-item-wrapper {
+  width: 80%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.carousel-one-item-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-one-item-image.active {
+  z-index: 1;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.carousel-arrow-btn {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.carousel-arrow-btn.left {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-arrow-btn.right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-arrow-btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .title-text {
-    color: #FEFAE0;
-    width: 50%; 
-    text-align: left; 
+  color: #fefae0;
+  width: 50%;
+  text-align: left;
 }
-
 
 .section-2 {
-    position: relative;
-    background-color: #FEFAE0;
-    background-size: cover;
-    background-position: center;
-    min-height: 60vh;
-    display: flex;
-    justify-content: center; 
-    padding-bottom: 50px;
-}
-.carousel-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-  }
-  
-  .latest-finds {
-    color: #d4a373;
-    margin-top: 75px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 20px;
-  }
-  
-  .carousel-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 60px;
-  }
-  
-  .carousel-wrapper {
-    overflow: hidden;
-    margin: 0 -20px;
-  }
-  
-  .carousel-content {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .carousel-item {
-    flex: 0 0 33.333%;
-    margin: 10px;
-    box-sizing: border-box;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e9edc9;
-    border-radius: 8px;
-    font-size: 1.25rem;
-    color: #666;
-  }
-  
-  .carousel-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .carousel-arrow-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    color: #d4a373;
-    transition: all 0.3s ease;
-  }
-  
-  .carousel-arrow-btn:hover {
-    background-color: #f8f8f8;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .carousel-arrow-btn.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .carousel-arrow-btn.left {
-    left: 0;
-  }
-  
-  .carousel-arrow-btn.right {
-    right: 0;
-  }
-  
-  .arrow-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: #d4a373;
-  }
-  
-  .view-all-btn {
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-    background-color: #d4a373;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.125rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .view-all-btn:hover {
-    background-color: #c49669;
-  }
-  
-  .section-3 {
-    background-color: #CCD5AE;
-    color: #FEFAE0;
-    padding-top: 100px; 
-    text-align: center; /* Centrerar texten */
-    min-height: 60vh;
-}
-
-.section-3 p{
-    margin-left: 150px;
-    margin-right: 150px;
-}
-
-.section-4{
   position: relative;
-  background-color: #FEFAE0;
-  color: #D4A373;
+  background-color: #fefae0;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+.section-carousel {
+  padding: 2rem 0;
+  background-color: #fefae0;
+  width: 100%;
+}
+
+.carousel-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 100px;
+  font-size: 35px;
+  color: #d4a373;
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+}
+
+.carousel-content {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 20px;
+}
+
+.carousel-item {
+  flex: 0 0 calc(33.333% - 20px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  margin-bottom: 2rem;
+}
+
+.carousel-item .product-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  background-color: #e9edc9;
+}
+
+.carousel-item p:first-of-type {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 1rem 1rem 0.5rem 1rem;
+}
+
+.carousel-item p:last-of-type {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 0 1rem 1rem 1rem;
+}
+
+.carousel-item::after {
+  content: "Se detaljer";
+  display: block;
+  width: calc(100% - 2rem);
+  margin: 0 1rem 1rem 1rem;
+  padding: 0.75rem 0;
+  text-align: center;
+  border: 1px solid #d4a373;
+  border-radius: 4px;
+  color: #d4a373;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.carousel-item:hover::after {
+  background-color: #d4a373;
+  color: white;
+}
+
+.carousel-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-arrow-btn.left {
+  left: 0;
+}
+
+.carousel-arrow-btn.right {
+  right: 0;
+}
+
+.carousel-arrow-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.view-all-btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background-color: #d4a373;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background-color: #c49669;
+}
+
+.section-3 {
+  background-color: #ccd5ae;
+  color: #fefae0;
+  padding-top: 100px;
+  text-align: center; /* Centrerar texten */
+  min-height: 60vh;
+}
+
+.section-3 p {
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.section-4 {
+  position: relative;
+  background-color: #fefae0;
+  color: #d4a373;
   background-size: cover;
   background-position: center;
   min-height: 60vh;
@@ -205,16 +430,33 @@
   padding: 50px;
 }
 
-.donation-flex{
+.donation-flex {
   display: flex;
   flex-direction: row;
 }
 
-.donation-flex p{
+.donation-flex p {
   width: 50%;
 }
 
-.donation-flex img{
+.donation-flex img {
   width: 45%;
   padding-left: 75px;
 }
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .carousel-item {
+    flex: 0 0 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item {
+    flex: 0 0 100%;
+  }
+}
+

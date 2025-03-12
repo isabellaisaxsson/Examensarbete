@@ -1,25 +1,25 @@
-"use client"
-
 import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import "../pages/style/Hem.css"
 
-const Carousel = () => {
+const Carousel = ({ products }) => { // Tar emot produkter som prop
   const [currentIndex, setCurrentIndex] = useState(0)
-  const totalItems = 6
   const itemsPerPage = 3
+  const maxItems = 6
+
+  const limitedProducts = products.slice(0, maxItems)
 
   const nextSlide = () => {
-    if (currentIndex < totalItems - itemsPerPage) {
-      setCurrentIndex(currentIndex + 1)
-    }
-  }
+    setCurrentIndex((prevIndex) =>
+      prevIndex >= limitedProducts.length - itemsPerPage ? 0 : prevIndex + 1
+    );
+  };
 
   const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1)
-    }
-  }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? products.length - itemsPerPage : prevIndex - 1
+    );
+  };
 
   return (
     <div className="latest-finds">
@@ -34,25 +34,25 @@ const Carousel = () => {
         </button>
         <div className="carousel-wrapper">
           <div className="carousel-content" style={{ transform: `translateX(-${currentIndex * 33.333}%)` }}>
-            {[...Array(totalItems)].map((_, index) => (
-              <div key={index} className="carousel-item">
-                Product {index + 1}
+            {products.slice(currentIndex, currentIndex + itemsPerPage).map((product) => (
+              <div key={product.id} className="carousel-item">
+                <img src={product.bild_url} alt={product.namn} className="product-image" />
+                <p>{product.namn}</p>
+                <p>{product.pris} kr</p>
               </div>
             ))}
           </div>
         </div>
-        <button
-          className={`carousel-arrow-btn right ${currentIndex >= totalItems - itemsPerPage ? "disabled" : ""}`}
-          onClick={nextSlide}
-          disabled={currentIndex >= totalItems - itemsPerPage}
-        >
+        <button className="carousel-arrow-btn right" onClick={nextSlide}>
           <ChevronRight size={24} />
         </button>
       </div>
+
+    <div className="button-container">
       <button className="view-all-btn">Se alla produkter!</button>
+    </div>
     </div>
   )
 }
 
 export default Carousel
-

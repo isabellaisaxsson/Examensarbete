@@ -1,4 +1,5 @@
 import "./style/products.css"
+import ProductsList from "../components/ProductList"
 
 export default function Produkter() {
   return (
@@ -20,19 +21,7 @@ export default function Produkter() {
 
         <section className="products-section">
           <h2>Våra produkter!</h2>
-          <div className="products-grid">
-            {/* Product cards */}
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="product-card">
-                <div className="product-image" />
-                <div className="product-details">
-                  <h3>Eco Product {item}</h3>
-                  <p>Sustainable and environmentally friendly product made from natural materials.</p>
-                  <button className="outline-button">View Details</button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ProductsList />
         </section>
       </main>
     </div>
