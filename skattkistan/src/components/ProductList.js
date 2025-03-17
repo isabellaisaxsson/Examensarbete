@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../superbaseClient"
 import ProductCard from "./productCards"
+import ProductModal from "./ProductModal"
 
 const ProductsList = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [selectedProduct, setSelectedProduct] = useState(null)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,22 +42,22 @@ const ProductsList = () => {
 
   if (loading) return <div className="loading">Laddar produkter...</div>
   if (error) return <div className="error">{error}</div>
-  if (!products || products.length === 0) {
-    return (
-      <div className="no-products">
-        <p>Inga produkter hittades i databasen</p>
-        <p className="debug-info">Kontrollera att:</p>
-        <ul className="debug-list">
-          <li>Tabellen "produkter" finns i din Supabase databas</li>
-          <li>Det finns data i tabellen</li>
-          <li>Du har rätt behörigheter (policies) inställda</li>
-        </ul>
-      </div>
-    )
-  }
 
-  // Use the ProductCard component to render the products
-  return <ProductCard products={products} />
+  return (
+    <div>
+      <div className="products-grid">
+        {products.map((product) => (
+          <ProductCard key={product.id} {...product} onClick={() => setSelectedProduct(product)} />
+        ))}
+      </div>
+
+
+      {/* Visa modalen om en produkt är vald */}
+      {selectedProduct && (
+        <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
+      )}
+    </div>
+  )
 }
 
 export default ProductsList

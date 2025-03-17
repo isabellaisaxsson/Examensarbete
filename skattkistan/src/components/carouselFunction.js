@@ -2,7 +2,8 @@ import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import "../pages/style/Hem.css"
 
-const Carousel = ({ products }) => { // Tar emot produkter som prop
+
+const Carousel = ({ products, setSelectedProduct  }) => { // Tar emot produkter som prop
   const [currentIndex, setCurrentIndex] = useState(0)
   const itemsPerPage = 3
   const maxItems = 6
@@ -39,6 +40,10 @@ const Carousel = ({ products }) => { // Tar emot produkter som prop
                 <img src={product.bild_url} alt={product.namn} className="product-image" />
                 <p>{product.namn}</p>
                 <p>{product.pris} kr</p>
+                <button className="outline-button" onClick={() => {
+  console.log("Selected product:", product); // Lägg till denna rad för att kolla om produkten verkligen väljs
+  setSelectedProduct(product);
+}}>Se detaljer</button>
               </div>
             ))}
           </div>
@@ -49,7 +54,7 @@ const Carousel = ({ products }) => { // Tar emot produkter som prop
       </div>
 
     <div className="button-container">
-      <button className="view-all-btn">Se alla produkter!</button>
+      <button className="view-all-btn" >Se alla produkter!</button>
     </div>
     </div>
   )
