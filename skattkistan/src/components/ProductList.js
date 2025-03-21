@@ -11,6 +11,7 @@ const ProductsList = () => {
   const [error, setError] = useState(null)
   const [selectedProduct, setSelectedProduct] = useState(null)
 
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -39,6 +40,7 @@ const ProductsList = () => {
 
     fetchProducts()
   }, [])
+
 
   if (loading) return <div className="loading">Laddar produkter...</div>
   if (error) return <div className="error">{error}</div>

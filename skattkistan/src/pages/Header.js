@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import "./style/Header.css"
+import { FaShoppingCart, FaHeart } from "react-icons/fa"
 
 const Header = () => {
   return (
@@ -28,6 +29,16 @@ const Header = () => {
           <li>
             <Link to="/kontakta-oss" className="nav-link">
               Kontakta oss
+            </Link>
+          </li>
+          <li>
+            <Link to="/favoriter" className="nav-link">
+              <FaHeart className="favorite-icon" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/varukorg" className="nav-link">
+              <FaShoppingCart className="cart-icon" />
             </Link>
           </li>
         </ul>

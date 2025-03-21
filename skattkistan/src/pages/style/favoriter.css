@@ -1,0 +1,94 @@
+/* Main container styling */
+.favoriter-page {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FEFAE0;
+    min-height: 100vh;
+  }
+
+  .favoriter-section{
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+  
+  /* Heading styling */
+  .favoriter-page h1 {
+    color: #D4A373;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    margin-top: 150px;
+    font-weight: bold;
+  }
+  
+  .heart-icon {
+    color: #d4a373;
+    transition: all 0.2s ease;
+  }
+  
+  .heart-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  
+  .heart-icon:active {
+    transform: scale(0.95);
+  }
+
+  /* Grid layout for favorites */
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Card styling */
+  .favorite-card {
+    border: 2px solid #D4A373;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fdf6e3;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Product image styling */
+  .favorite-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  /* Product name styling */
+  .product-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000;
+  }
+  
+  /* Product price styling */
+  .product-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #000;
+  }
+  
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .favorites-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .favorites-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  

@@ -1,5 +1,7 @@
 "use client"
 
+import { addToCart } from '../components/varukorgFunction';
+import { addToFavorites } from '../components/favoriterFunction'
 import { useState } from "react"
 
 const ProductModal = ({ product, onClose }) => {
@@ -42,6 +44,24 @@ const ProductModal = ({ product, onClose }) => {
 
   const handleZoomLevelChange = (e) => {
     setZoomLevel(Number.parseFloat(e.target.value))
+  }
+
+  const handleAddToCart = async () => {
+    const success = await addToCart(product.id) // Använd produktens ID för att lägga till i varukorgen
+    if (success) {
+      alert("Produkten har lagts i varukorgen!")
+    } else {
+      alert("Något gick fel. Försök igen.")
+    }
+  }
+
+  const handleAddToFavorites = async () => {
+    const success = await addToFavorites(product.id) // Använd produktens ID för att lägga till i favoriter
+    if (success) {
+      alert("Produkten har lagts i dina favoriter!")
+    } else {
+      alert("Något gick fel. Försök igen.")
+    }
   }
 
   return (
@@ -121,11 +141,9 @@ const ProductModal = ({ product, onClose }) => {
               </div>
 
               <div className="product-actions">
-                <button className="action-button primary-button">Lägg i kundvagn</button>
-                <button className="action-button secondary-button">Lägg till i önskelistan</button>
+                <button className="action-button primary-button" onClick={handleAddToCart}>Lägg i kundvagn</button>
+                <button className="action-button secondary-button" onClick={handleAddToFavorites}>Lägg till i önskelistan</button>
               </div>
-
-              <p className="stock-info">Endast 1 i lager - Fynda nu!</p>
             </div>
           </div>
         )}

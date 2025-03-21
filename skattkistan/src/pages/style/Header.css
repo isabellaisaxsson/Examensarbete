@@ -36,4 +36,7 @@
     opacity: 0.9;
   }
   
+  .cart-icon, .favorite-icon{
+    font-size: 1.5rem;
+  }
   

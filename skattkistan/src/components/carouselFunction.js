@@ -41,9 +41,9 @@ const Carousel = ({ products, setSelectedProduct  }) => { // Tar emot produkter 
                 <p>{product.namn}</p>
                 <p>{product.pris} kr</p>
                 <button className="outline-button" onClick={() => {
-  console.log("Selected product:", product); // Lägg till denna rad för att kolla om produkten verkligen väljs
-  setSelectedProduct(product);
-}}>Se detaljer</button>
+                    console.log("Selected product:", product); // Lägg till denna rad för att kolla om produkten verkligen väljs
+                    setSelectedProduct(product);
+                    }}>Se detaljer</button>
               </div>
             ))}
           </div>

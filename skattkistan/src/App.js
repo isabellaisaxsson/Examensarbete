@@ -3,6 +3,8 @@ import Produkter from "./pages/Produkter";
 import OmOss from "./pages/Om-oss";
 import KontaktaOss from "./pages/Kontakta-oss";
 import Hem from "./pages/Hem";
+import Varukorg from "./pages/Varukorg";
+import Favoriter from "./pages/Favoriter";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './pages/style/App.css';
 
@@ -18,6 +20,8 @@ function App() {
             <Route path="/produkter" element={<Produkter />} />
             <Route path="/om-oss" element={<OmOss />} />
             <Route path="/kontakta-oss" element={<KontaktaOss />} />
+            <Route path="/varukorg" element={<Varukorg />} />
+            <Route path="/favoriter" element={<Favoriter />} />
         </Routes>
 
       </header>
