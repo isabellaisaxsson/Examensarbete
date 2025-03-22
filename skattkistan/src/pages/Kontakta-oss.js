@@ -4,9 +4,8 @@ const KontaktaOss = () => {
       return (
         <div className="page-container">
     
-          {/* Main content */}
+          
           <main className="main-content">
-            {/* Introduction section */}
             <section className="intro-section">
               <div className="intro-container">
                 <h1>Kontakta oss</h1>
@@ -18,7 +17,6 @@ const KontaktaOss = () => {
             </section>
     
             <div className="contact-layout">
-              {/* Contact Information */}
               <section className="contact-info-section">
                 <div className="info-container">
                   <h2>Get in Touch</h2>
@@ -52,7 +50,6 @@ const KontaktaOss = () => {
                 </div>
               </section>
     
-              {/* Contact Form */}
               <section className="contact-form-section">
                 <div className="form-container">
                   <h2>Send Us a Message</h2>

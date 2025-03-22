@@ -7,9 +7,7 @@ const OmOss = () => {
     <div class="about-img">
     </div>
 
-          {/* Main content */}
           <main className="main-content">
-            {/* Introduction section */}
             <section className="intro-section">
               <div className="intro-container">
                 <h1>Om oss</h1>
@@ -20,9 +18,6 @@ const OmOss = () => {
               </div>
             </section>
     
-            
-
-            {/* Mission section */}
             <section className="mission-section">
               <div className="mission-container">
                 <div className="mission-content">
@@ -40,8 +35,7 @@ const OmOss = () => {
                 </div>
               </div>
             </section>
-    
-            {/* Values grid */}
+  
             <section className="values-section">
               <h2>Våra värderingar</h2>
               <div className="values-grid">

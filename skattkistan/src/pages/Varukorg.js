@@ -29,13 +29,10 @@ const Varukorg = () => {
   const moveToWishlist = async (id) => {
     console.log(`Moved item ${id} to wishlist`);
   
-    // Lägg till i favoriter
     const success = await addToWishlist(id);
     if (success) {
-      // Ta bort från varukorgen om det lyckades lägga till i favoriter
       const removeSuccess = await removeFromCart(id);
       if (removeSuccess) {
-        // Uppdatera varukorgens state
         setCartItems(cartItems.filter((item) => item.id !== id));
       }
     }

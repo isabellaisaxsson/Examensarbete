@@ -26,7 +26,7 @@ const Favoriter = () => {
     
       if (success) {
         console.log("Borttagning lyckades");
-        setFavorites(favorites.filter((fav) => fav.id !== favorit_id)); // Filtrera bort favoriten baserat på id
+        setFavorites(favorites.filter((fav) => fav.id !== favorit_id)); 
       } else {
         console.error("Borttagning misslyckades");
         alert("Det gick inte att ta bort produkten från favoriter. Försök igen.");
@@ -50,7 +50,7 @@ const Favoriter = () => {
         <div className="favorite-card" key={fav.id}>
             <button
               className="wishlist-btn"
-              onClick={() => handleRemoveFavorite(fav.id)} // Ändrat till korrekt ID
+              onClick={() => handleRemoveFavorite(fav.id)} 
               aria-label="Ta bort från favoriter"
               >
               <Heart className="heart-icon" />
