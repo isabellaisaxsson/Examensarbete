@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Trash2, Heart } from "lucide-react"
 import "./style/varukorg.css"
 import { getCartItems, removeFromCart, addToWishlist } from "../components/varukorgFunction"
+import { Link } from "react-router-dom"
 
 const Varukorg = () => {
   const [cartItems, setCartItems] = useState([])
@@ -116,7 +117,9 @@ const Varukorg = () => {
               <span>{calculateTotal() + calculateShipping()} kr</span>
             </div>
 
-            <button className="checkout-btn">FORTSÄTT TILL KASSAN</button>
+            <Link to="/kassa">
+              <button className="checkout-btn">FORTSÄTT TILL KASSAN</button>
+            </Link>
           </div>
         </div>
       )}

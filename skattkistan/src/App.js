@@ -5,7 +5,7 @@ import KontaktaOss from "./pages/Kontakta-oss";
 import Hem from "./pages/Hem";
 import Varukorg from "./pages/Varukorg";
 import Favoriter from "./pages/Favoriter";
-import Kassa from "./pages/Kassa"
+import Kassa from "./pages/Kassa";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './pages/style/App.css';
 
