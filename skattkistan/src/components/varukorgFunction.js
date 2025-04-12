@@ -18,7 +18,7 @@ export const addToCart = async (produkt_id) => {
   
     if (error) {
       console.error("Fel vid tilläggning i varukorgen:", error)
-      alert(`Fel: ${error.message}`)  // Visar mer detaljerad felmeddelande
+      alert(`Fel: ${error.message}`)  
       return false
     }
 
@@ -55,7 +55,7 @@ export const addToWishlist = async (id) => {
     .from("varukorg")
     .select("produkt_id")
     .eq("id", id)
-    .single(); // .single() eftersom det ska vara en rad per id
+    .single(); 
 
   if (error || !cartItem) {
     console.error("Fel vid hämtning av varukorgsobjekt:", error);
@@ -86,7 +86,7 @@ export const addToWishlist = async (id) => {
     return false;
   }
 
-  // Ta bort produkten från varukorgen om den var där
+  // Ta bort produkten från varukorgen när den läggs till i favoriter
   await removeFromCart(id);
 
   console.log("Produkt flyttad till favoriter:", data);

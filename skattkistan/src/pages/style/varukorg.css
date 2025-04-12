@@ -20,12 +20,6 @@
     gap: 2rem;
   }
   
-  @media (min-width: 768px) {
-    .varukorg-content {
-      grid-template-columns: 2fr 1fr;
-    }
-  }
-  
   .cart-items {
     display: flex;
     flex-direction: column;
@@ -187,4 +181,8 @@
     padding: 3rem;
   }
   
-  
+  @media (min-width: 768px) {
+    .varukorg-content {
+      grid-template-columns: 2fr 1fr;
+    }
+  }

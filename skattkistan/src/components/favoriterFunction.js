@@ -4,15 +4,15 @@ import { supabase } from "../superbaseClient"
 const getSessionId = () => {
   let sessionId = localStorage.getItem("session_id")
   if (!sessionId) {
-    sessionId = crypto.randomUUID() // Skapa ett nytt session ID om det inte finns
-    localStorage.setItem("session_id", sessionId) // Spara session ID i localStorage
+    sessionId = crypto.randomUUID() /
+    localStorage.setItem("session_id", sessionId) 
   }
   return sessionId
 }
 
 // Lägg till produkt till favoriter
 export const addToFavorites = async (produkt_id) => {
-  const sessionId = getSessionId() // Hämta session ID
+  const sessionId = getSessionId() 
 
   const { data, error } = await supabase.from("favoriter").insert([{ session_id: sessionId, produkt_id }])
 
@@ -28,7 +28,7 @@ export const addToFavorites = async (produkt_id) => {
 
 // Hämta alla favoriter för den aktuella sessionen
 export const getFavorites = async () => {
-  const sessionId = getSessionId() // Hämta session ID
+  const sessionId = getSessionId() 
 
   const { data, error } = await supabase
     .from("favoriter")
@@ -43,7 +43,7 @@ export const getFavorites = async () => {
     return []
   }
 
-  return data // Returnera listan med favoriter
+  return data 
 }
 
 // Ta bort produkt från favoriter
@@ -55,8 +55,8 @@ export const removeFromFavorites = async (favorit_id) => {
   const { data, error } = await supabase
     .from("favoriter")
     .delete()
-    .eq("session_id", sessionId) // Se till att det är rätt session
-    .eq("id", favorit_id); // Använd id som primärnyckel för att ta bort raden
+    .eq("session_id", sessionId) 
+    .eq("id", favorit_id); 
 
   if (error) {
     console.error("Fel vid borttagning från favoriter:", error);

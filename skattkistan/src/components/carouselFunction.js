@@ -1,25 +1,28 @@
-import { useState } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import "../pages/style/Hem.css"
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import "../pages/style/Hem.css";
 
+const Carousel = ({ products, setSelectedProduct }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const itemsPerPage = 3;
 
-const Carousel = ({ products, setSelectedProduct  }) => { // Tar emot produkter som prop
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const itemsPerPage = 3
-  const maxItems = 6
+  const totalItems = products.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const limitedProducts = products.slice(0, maxItems)
-
+  // Går till nästa sida och visar nästa grupp av produkter (cirkulerar tillbaka till början om det är slut)
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex >= limitedProducts.length - itemsPerPage ? 0 : prevIndex + 1
-    );
+    setCurrentIndex((prevIndex) => {
+      const nextPage = (prevIndex + itemsPerPage) % totalItems;
+      return nextPage;
+    });
   };
 
+  //Går till tidigare sida och visar gruppen av produkter som den tidigare varit på.
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? products.length - itemsPerPage : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => {
+      const newIndex = prevIndex - itemsPerPage;
+      return newIndex >= 0 ? newIndex : (totalPages - 1) * itemsPerPage;
+    });
   };
 
   return (
@@ -27,37 +30,43 @@ const Carousel = ({ products, setSelectedProduct  }) => { // Tar emot produkter 
       <h2 className="carousel-title">De senaste fynden!</h2>
       <div className="carousel-container">
         <button
-          className={`carousel-arrow-btn left ${currentIndex === 0 ? "disabled" : ""}`}
+          className="carousel-arrow-btn left"
           onClick={prevSlide}
-          disabled={currentIndex === 0}
         >
           <ChevronLeft size={24} />
         </button>
+
         <div className="carousel-wrapper">
-          <div className="carousel-content" style={{ transform: `translateX(-${currentIndex * 33.333}%)` }}>
+          <div className="carousel-content">
             {products.slice(currentIndex, currentIndex + itemsPerPage).map((product) => (
               <div key={product.id} className="carousel-item">
                 <img src={product.bild_url} alt={product.namn} className="product-image" />
                 <p>{product.namn}</p>
                 <p>{product.pris} kr</p>
-                <button className="outline-button" onClick={() => {
-                    console.log("Selected product:", product); // Lägg till denna rad för att kolla om produkten verkligen väljs
+                <button
+                  className="outline-button"
+                  onClick={() => {
+                    console.log("Selected product:", product);
                     setSelectedProduct(product);
-                    }}>Se detaljer</button>
+                  }}
+                >
+                  Se detaljer
+                </button>
               </div>
             ))}
           </div>
         </div>
+
         <button className="carousel-arrow-btn right" onClick={nextSlide}>
           <ChevronRight size={24} />
         </button>
       </div>
 
-    <div className="button-container">
-      <button className="view-all-btn" >Se alla produkter!</button>
+      <div className="button-container">
+        <button className="view-all-btn">Se alla produkter!</button>
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default Carousel
+export default Carousel;

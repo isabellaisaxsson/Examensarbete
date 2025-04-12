@@ -6,6 +6,7 @@ import Hem from "./pages/Hem";
 import Varukorg from "./pages/Varukorg";
 import Favoriter from "./pages/Favoriter";
 import Kassa from "./pages/Kassa";
+import Bekraftelse from "./pages/bekraftelse"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './pages/style/App.css';
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/varukorg" element={<Varukorg />} />
             <Route path="/favoriter" element={<Favoriter />} />
             <Route path="/kassa" element={<Kassa />} />
+            <Route path="/bekraftelse" element={<Bekraftelse />} />
         </Routes>
 
       </header>

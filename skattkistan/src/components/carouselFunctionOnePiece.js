@@ -9,14 +9,11 @@ const CarouselForOneItem = ({ products = [] }) => {
   const [isLoaded, setIsLoaded] = useState(false)
   const maxItems = 6
 
-  // Debug: Log the products prop when it changes
   useEffect(() => {
     console.log("CarouselForOneItem received products:", products)
   }, [products])
 
-  // Use useMemo to memoize the limitedProducts array
   const limitedProducts = useMemo(() => {
-    // Make sure products is an array
     const productsArray = Array.isArray(products) ? products : []
     console.log("Products array in useMemo:", productsArray)
 
@@ -30,14 +27,13 @@ const CarouselForOneItem = ({ products = [] }) => {
   }, [products, maxItems])
 
   useEffect(() => {
-    // Set loaded state once we have products
     if (limitedProducts.length > 0) {
       setIsLoaded(true)
       console.log("Products loaded in carousel:", limitedProducts)
     }
   }, [limitedProducts])
 
-  // Use useCallback to memoize the nextSlide and prevSlide functions
+
   const nextSlide = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex >= limitedProducts.length - 1 ? 0 : prevIndex + 1))
   }, [limitedProducts.length])
@@ -46,7 +42,7 @@ const CarouselForOneItem = ({ products = [] }) => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? limitedProducts.length - 1 : prevIndex - 1))
   }, [limitedProducts.length])
 
-  // Automatic image change every 3 seconds
+  //Skapar en automatisk slideshow som bläddrar mellan produkterna var 3:e sekund
   useEffect(() => {
     if (!isLoaded) return
 
@@ -54,7 +50,8 @@ const CarouselForOneItem = ({ products = [] }) => {
     return () => clearInterval(interval)
   }, [isLoaded, nextSlide])
 
-  // Log the current image for debugging
+
+  // Loggar aktuell produkt i carouseln när index eller produkter ändras, efter att allt laddats
   useEffect(() => {
     if (isLoaded) {
       console.log("Current carousel image:", {
@@ -69,11 +66,10 @@ const CarouselForOneItem = ({ products = [] }) => {
     return <p>Inga produkter att visa</p>
   }
 
-  // Handle image load error
+//Om det skulle bli error med bild ska det skrivas i konsollen
   const handleImageError = (e) => {
     console.log("Image failed to load, using placeholder")
     e.target.onerror = null
-    e.target.src = "/placeholder.svg"
   }
 
   return (
@@ -93,7 +89,7 @@ const CarouselForOneItem = ({ products = [] }) => {
               }}
             >
               <img
-                src={product.bild_url || "/placeholder.svg"}
+                src={product.bild_url || "Product"}
                 alt={product.namn || "Product"}
                 className="product-image"
                 onError={handleImageError}

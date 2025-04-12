@@ -11,6 +11,7 @@ const ProductModal = ({ product, onClose }) => {
 
   if (!product) return null
 
+  //Funktion som hanterar om man zoomar in på bilden
   const toggleZoom = () => {
     setIsZoomed(!isZoomed)
   }
@@ -21,7 +22,6 @@ const ProductModal = ({ product, onClose }) => {
     const imageElement = e.currentTarget
     const { left, top, width, height } = imageElement.getBoundingClientRect()
 
-    // Calculate relative position within the image (0 to 1)
     const x = Math.max(0, Math.min(1, (e.clientX - left) / width))
     const y = Math.max(0, Math.min(1, (e.clientY - top) / height))
 
@@ -35,7 +35,6 @@ const ProductModal = ({ product, onClose }) => {
     const imageElement = e.currentTarget
     const { left, top, width, height } = imageElement.getBoundingClientRect()
 
-    // Calculate relative position within the image (0 to 1)
     const x = Math.max(0, Math.min(1, (touch.clientX - left) / width))
     const y = Math.max(0, Math.min(1, (touch.clientY - top) / height))
 
@@ -46,8 +45,9 @@ const ProductModal = ({ product, onClose }) => {
     setZoomLevel(Number.parseFloat(e.target.value))
   }
 
+  //Funktion som hanterar när man lägger till en produkt i varukorgen
   const handleAddToCart = async () => {
-    const success = await addToCart(product.id) // Använd produktens ID för att lägga till i varukorgen
+    const success = await addToCart(product.id) 
     if (success) {
       alert("Produkten har lagts i varukorgen!")
     } else {
@@ -55,8 +55,9 @@ const ProductModal = ({ product, onClose }) => {
     }
   }
 
+  //Funktion som hanterar när man lägger till en produkt i favoriter
   const handleAddToFavorites = async () => {
-    const success = await addToFavorites(product.id) // Använd produktens ID för att lägga till i favoriter
+    const success = await addToFavorites(product.id)
     if (success) {
       alert("Produkten har lagts i dina favoriter!")
     } else {
@@ -95,7 +96,6 @@ const ProductModal = ({ product, onClose }) => {
           </div>
         ) : (
           <div className="modal-flex-container">
-            {/* Product Image Section */}
             <div className="modal-image-container">
               <div
                 className="modal-image"
@@ -107,7 +107,6 @@ const ProductModal = ({ product, onClose }) => {
               </div>
             </div>
 
-            {/* Product Details Section */}
             <div className="modal-details">
               <h2 className="product-title">{product.namn}</h2>
 

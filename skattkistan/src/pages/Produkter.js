@@ -1,5 +1,6 @@
 import "./style/products.css"
 import ProductsList from "../components/ProductList"
+import { Link } from 'react-router-dom';
 
 export default function Produkter() {
   return (
@@ -14,7 +15,9 @@ export default function Produkter() {
               <p>
               Våra produkter är noggrant utvalda second hand-varor, vilket ger dem nytt liv och minskar onödig konsumtion. Genom att välja återanvända produkter bidrar vi till en mer hållbar framtid, där miljön och återvinning står i fokus.
               </p>
+              <Link to="/om-oss">
               <button className="custom-button">Läs mer!</button>
+              </Link>
             </div>
           </div>
         </section>

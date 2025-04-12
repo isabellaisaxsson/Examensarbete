@@ -55,7 +55,9 @@ const Varukorg = () => {
       {cartItems.length === 0 ? (
         <div className="empty-cart">
           <p>Din varukorg är tom</p>
-          <button className="continue-shopping-btn">Fortsätt handla</button>
+          <Link to="/produkter">
+            <button className="continue-shopping-btn">Fortsätt handla</button>
+          </Link>
         </div>
       ) : (
         <div className="varukorg-content">
