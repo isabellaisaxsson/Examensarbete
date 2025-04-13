@@ -69,23 +69,6 @@
     border-color: #d2b48c;
   }
   
-  .payment-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .payment-option {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .payment-option input[type="radio"] {
-    margin: 0;
-  }
-  
   .card-details {
     margin-top: 15px;
     padding-top: 15px;
@@ -153,8 +136,15 @@
   }
   
   @media (max-width: 768px) {
+    .kassa-container{
+      padding: 25px;
+    }
     .kassa-content {
       flex-direction: column;
+    }
+
+    .order-summary{
+      width: 90%;
     }
   }
 

@@ -1,4 +1,5 @@
 import Header from "./pages/Header";
+import Footer from "./pages/Footer";
 import Produkter from "./pages/Produkter";
 import OmOss from "./pages/Om-oss";
 import KontaktaOss from "./pages/Kontakta-oss";
@@ -8,7 +9,6 @@ import Favoriter from "./pages/Favoriter";
 import Kassa from "./pages/Kassa";
 import Bekraftelse from "./pages/bekraftelse"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './pages/style/App.css';
 
 function App() {
   return (
@@ -27,8 +27,10 @@ function App() {
             <Route path="/kassa" element={<Kassa />} />
             <Route path="/bekraftelse" element={<Bekraftelse />} />
         </Routes>
-
+        <Footer />
       </header>
+
+
     </div>
     </Router>
   );

@@ -1,13 +1,13 @@
 import { supabase } from '../superbaseClient'; 
 
-const getSessionId = () => {
-    let sessionId = localStorage.getItem("session_id");
-    if (!sessionId) {
-      sessionId = crypto.randomUUID();
-      localStorage.setItem("session_id", sessionId);
-    }
-    return sessionId;
-  };
+export const getSessionId = () => {
+  let sessionId = localStorage.getItem("session_id");
+  if (!sessionId) {
+    sessionId = Date.now();
+    localStorage.setItem("session_id", sessionId);
+  }
+  return parseInt(sessionId, 10);
+};
 
 
 // Lägg till produkt i varukorgen
@@ -35,8 +35,17 @@ export const getCartItems = async () => {
     .from("varukorg")
     .select(`
       id,
-      produkter:produkt_id (namn, pris, bild_url, storlek, typ_av_klader)
+      produkt_id,
+      produkter:produkt_id (
+        id,
+        namn,
+        pris,
+        bild_url,
+        storlek,
+        typ_av_klader
+      )
     `)
+    
     .eq("session_id", sessionId)
 
   if (error) {

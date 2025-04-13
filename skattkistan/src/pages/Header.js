@@ -1,16 +1,30 @@
 import { Link } from "react-router-dom"
 import "./style/Header.css"
-import { FaShoppingCart, FaHeart } from "react-icons/fa"
+import { FaShoppingCart, FaHeart, FaBars } from "react-icons/fa"
+
+import { useState } from "react";
 
 const Header = () => {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Funktion för att toggla hamburgar menyn
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <header className="header">
       <Link to="/" className="header-logo">
         Skattkistan
       </Link>
+      
+      <div className="burger-icon" onClick={toggleMenu}>
+        <FaBars />
+      </div>
 
       <nav>
-        <ul className="nav-list">
+        <ul className={`nav-list ${menuOpen ? 'show' : ''}`}>
           <li>
             <Link to="/" className="nav-link">
               Hem

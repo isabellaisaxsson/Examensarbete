@@ -1,13 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useNavigate } from 'react-router-dom';
 import "./style/Kassa.css"
 import { supabase } from "../superbaseClient"
-import { getCartItems } from "../components/varukorgFunction";
-
+import { getCartItems, getSessionId } from "../components/varukorgFunction"
 
 const Kassa = () => {
   const [cartItems, setCartItems] = useState([])
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,16 +21,16 @@ const Kassa = () => {
 
   useEffect(() => {
     const fetchCart = async () => {
-      const items = await getCartItems();
-      setCartItems(items);
-    };
-    
-    fetchCart();
-  }, []);
+      const items = await getCartItems()
+      setCartItems(items)
+    }
+
+    fetchCart()
+  }, [])
 
   const [errors, setErrors] = useState({
     email: "",
-    general: ""
+    general: "",
   })
 
   const handleChange = (e) => {
@@ -52,7 +53,7 @@ const Kassa = () => {
     }
 
     // Kontrollerar att alla obligatoriska fält är ifyllda, annars visas ett error meddelande
-    for (let field in formData) {
+    for (const field in formData) {
       if (formData[field] === "") {
         generalError = "Alla fält måste fyllas i!"
         valid = false
@@ -65,50 +66,76 @@ const Kassa = () => {
   }
 
   const clearCart = async () => {
-    const sessionId = localStorage.getItem("session_id");
-    
-    const { error } = await supabase
-      .from("varukorg")
-      .delete()
-      .eq("session_id", sessionId);
-  
+    const sessionId = getSessionId()
+
+    const { error } = await supabase.from("varukorg").delete().eq("session_id", sessionId)
+
     if (error) {
-      console.error("Fel vid tömning av varukorgen:", error);
+      console.error("Fel vid tömning av varukorgen:", error)
     } else {
-      console.log("Varukorg tömd!");
+      console.log("Varukorg tömd!")
     }
-  };
-  
+  }
+
   // Anropa clearCart när beställningen är klar
   const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    if (!validateForm()) {
-      return;
-    }
-  
-    // Skicka kundinformation till databasen
-    const { error } = await supabase.from("kund").insert([
-    ]);
-  
-    if (error) {
-      console.error("Kunddata sparades inte:", error);
-      alert("Något gick fel, försök igen!");
-    } else {
-      console.log("Kunddata sparat!");
-      alert("Tack för din beställning!");
-      
-      //Tömmer varukorgen efter beställning
-      await clearCart();
-    }
-  };
-  
-  
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.produkter.pris, 0);
-  };
+    e.preventDefault()
 
-  const calculateShipping = () => 52; 
+    if (!validateForm()) {
+      return
+    }
+
+    // Hämta session_id från funktionen i varukorgFunction.js
+    const sessionId = getSessionId()
+    console.log("Using session ID:", sessionId)
+
+    try {
+      // Skicka kundinformation till databasen
+      const { data: customerData, error: customerError } = await supabase
+        .from("kund")
+        .insert([
+          {
+            fNamn: formData.firstName,
+            eNamn: formData.lastName,
+            email: formData.email,
+            tele: formData.phone,
+            adress: formData.address,
+            postnr: formData.postalCode,
+            ort: formData.city,
+          },
+        ])
+        .select()
+
+      if (customerError) {
+        console.error("Kunddata sparades inte:", customerError)
+        alert("Något gick fel, försök igen!")
+        return
+      }
+
+      console.log("Kunddata sparad:", customerData)
+
+      if (!customerData || customerData.length === 0) {
+        console.error("Ingen kunddata returnerades")
+        alert("Något gick fel, försök igen!")
+        return
+      }
+
+      // Töm varukorgen efter att beställningen är klar
+      await clearCart()
+
+      console.log("Beställning slutförd!")
+      navigate("/bekraftelse");
+    } catch (error) {
+      console.error("Ett oväntat fel inträffade:", error)
+      alert("Något gick fel, försök igen!")
+    }
+  }
+
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + item.produkter.pris, 0)
+  }
+
+  const calculateShipping = () => 52
 
   return (
     <div className="kassa-container">
@@ -117,7 +144,7 @@ const Kassa = () => {
       <div className="kassa-content">
         <div className="kassa-form-container">
           <form onSubmit={handleSubmit} className="kassa-form">
-          {errors.general && <div className="error">{errors.general}</div>}
+            {errors.general && <div className="error">{errors.general}</div>}
             <section className="form-section">
               <h2>Personuppgifter</h2>
               <div className="form-row">
@@ -148,26 +175,12 @@ const Kassa = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="email">E-post *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
                   {errors.email && <div className="error">{errors.email}</div>}
                 </div>
                 <div className="form-group">
                   <label htmlFor="phone">Telefon *</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                  />
+                  <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required />
                 </div>
               </div>
             </section>
@@ -211,11 +224,7 @@ const Kassa = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="cardNumber">Kortnummer *</label>
-                  <input
-                    type="text"
-                    id="cardNumber"
-                    required
-                  />
+                  <input type="text" id="cardNumber" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="city">Utgångsdatum *</label>
@@ -244,22 +253,18 @@ const Kassa = () => {
             <span>SUMMA</span>
             <span>{calculateTotal() + calculateShipping()} kr</span>
           </div>
-
           <button
-  type="button"
-  className="checkout-button"
-  onClick={async () => {
-    const isValid = validateForm();
-    if (!isValid) return;
+            type="button"
+            className="checkout-button"
+            onClick={async () => {
+              const isValid = validateForm()
+              if (!isValid) return
 
-    await handleSubmit(new Event("submit")); 
-    alert("Betalningen har genomförts!");
-
-    
-  }}
->
-  SLUTFÖR KÖP
-</button>
+              await handleSubmit(new Event("submit"))
+            }}
+          >
+            SLUTFÖR KÖP
+          </button>
         </div>
       </div>
     </div>
@@ -267,4 +272,3 @@ const Kassa = () => {
 }
 
 export default Kassa
-
